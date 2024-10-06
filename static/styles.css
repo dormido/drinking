@@ -1,5 +1,13 @@
-.language{
-    color: blue;
+body {
+    display: flex;
+    justify-content: center; /* Alinea horizontalmente */
+    align-items: center; /* Alinea verticalmente */
+    height: 100vh; /* Altura de la ventana del navegador */
+    margin: 0; /* Elimina el margen por defecto */
+}
 
-
+.content {
+    text-align: center; /* Centra el texto dentro del div */
+    border: 1px solid #000; /* Opcional: para ver los límites */
+    padding: 20px; /* Espaciado interno */
 }
