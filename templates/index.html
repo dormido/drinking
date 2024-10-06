@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Alcohol</title>
+</head>
+<body>
+    <h1>Calculadora de Alcohol Ingerido</h1>
+    
+    <form method="POST" action="/">
+        <label for="language">Selecciona el idioma:</label>
+        <select name="language" id="language">
+            <option value="es">Español</option>
+            <option value="en">Inglés</option>
+            <option value="ca">Català</option>
+        </select><br><br>
+
+        <label for="gender">Género:</label>
+        <select name="gender" id="gender">
+            <option value="1">Hombre</option>
+            <option value="2">Mujer</option>
+            <option value="3">Hombre afeminado</option>
+            <option value="4">Dama con Rama</option>
+        </select><br><br>
+
+        <label for="weight">Peso (kg):</label>
+        <input type="number" name="weight" id="weight" step="0.1" required><br><br>
+
+        <label for="tam">Tasa máxima de alcoholemia permitida:</label>
+        <select name="tam" id="tam">
+            <option value="1">0,5 g/L</option>
+            <option value="2">0,3 g/L (Nóveles y profesionales)</option>
+        </select><br><br>
+
+        <label for="drink">¿Qué bebida?</label>
+        <select name="drink" id="drink">
+            <option value="1">Cerveza</option>
+            <option value="2">Vino</option>
+            <option value="3">Destilados</option>
+            <option value="4">Absenta</option>
+        </select><br><br>
+
+        <button type="submit">Calcular</button>
+    </form>
+
+    {% if result %}
+    <h2>Cantidad de alcohol ingerido: {{ result }} gramos</h2>
+    {% endif %}
+</body>
+</html>
