@@ -52,7 +52,7 @@
 
         {% if result %}
         <p>{{ translations['result'] }}</p> <!-- Mostra "Tu ingesta de alcohol calculada es:" -->
-        <ul>
+        <p>
             {% if drink == 1 %}
                 <li>Quintos: {{ result[0]|round(2) }}</li>
                 <li>Medianas: {{ result[1]|round(2) }}</li>
@@ -65,7 +65,7 @@
             {% elif drink == 4 %}
                 <li>{{ translations['drink_options'][3] }}: {{ result|round(2) }}</li>
             {% endif %}
-        </ul>
+        </p>
         {% endif %}
     </div>
 </body>
