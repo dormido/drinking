@@ -52,20 +52,20 @@
 
         {% if result %}
         <p>{{ translations['result'] }}</p> <!-- Mostra "Tu ingesta de alcohol calculada es:" -->
-        <p>
+        <div> <!-- Reemplaza <p> por <div> para evitar errores -->
             {% if drink == 1 %}
-                <li>Quintos: {{ result[0]|round(2) }}</li>
-                <li>Medianas: {{ result[1]|round(2) }}</li>
-                <li>Cañas: {{ result[2]|round(2) }}</li>
+                <p>Quintos: {{ result[0]|round(2) }}</p>
+                <p>Medianas: {{ result[1]|round(2) }}</p>
+                <p>Cañas: {{ result[2]|round(2) }}</p>
             {% elif drink == 2 %}
-                <li>{{ translations['drink_options'][1] }}: {{ result|round(2) }}</li>
+                <p>{{ translations['drink_options'][1] }}: {{ result|round(2) }}</p>
             {% elif drink == 3 %}
-                <li>Shots: {{ result[0]|round(2) }}</li>
-                <li>Cubatas: {{ result[1]|round(2) }}</li>
+                <p>Shots: {{ result[0]|round(2) }}</p>
+                <p>Cubatas: {{ result[1]|round(2) }}</p>
             {% elif drink == 4 %}
-                <li>{{ translations['drink_options'][3] }}: {{ result|round(2) }}</li>
+                <p>{{ translations['drink_options'][3] }}: {{ result|round(2) }}</p>
             {% endif %}
-        </p>
+        </div>
         {% endif %}
     </div>
 </body>
