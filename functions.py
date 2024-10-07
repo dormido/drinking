@@ -3,7 +3,7 @@ import os, sys
 def get_translations(language):
     translations = {
         "es": {
-            "title": "Calculadora de Alcohol Ingerido",  
+            "title": "Calculadora Bebidas a Tomar Antes de la Multa",  
             "select_language": "Selecciona Idioma:",
             "gender": "¿Cual es tu género? ",
             "weight": "¿Cuanto pesas?",
@@ -16,7 +16,7 @@ def get_translations(language):
             "drink_options": ["Cervecilla", "Vino", "Destilados", "Absenta"],
         },
         "en": {
-            "title": "Alcohol Intake Calculator",  
+            "title": "Drink Calculator Before a Penalty",  
             "select_language": "Select Language:",
             "gender": "What's your gender? ",
             "weight": "What's your weight?",
@@ -29,7 +29,7 @@ def get_translations(language):
             "drink_options": ["Beer", "Wine", "Spirits", "Absinthe"],
         },
         "ca": {
-            "title": "Calculadora d'Alcohol Ingerit",  
+            "title": "Calculadora Begudes a Beure Abans de la Multa",  
             "select_language": "Selecciona Idioma:",
             "gender": "Quin es el teu gènere? ",
             "weight": "Quin és el teu pes?",

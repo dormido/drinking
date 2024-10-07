@@ -16,6 +16,8 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    flex-direction: column;
+    flex: 1;
 }
 
 .content {
@@ -76,4 +78,9 @@ form select, form input {
     margin-bottom: 15px;
 }
 
-
+footer {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px; 
+    border-top: 1px solid var(--border-color);
+}
