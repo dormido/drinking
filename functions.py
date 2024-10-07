@@ -1,27 +1,47 @@
 import os, sys
 
-
 def get_translations(language):
     translations = {
-    "es": {
-        "gender": "¿Cual es tu género? \n1.Hombre\n2.Mujer\n3.Hombre afeminado\n4.Dama con Rama",
-        "weight": "¿Cuanto pesas?",
-        "tam": "¿Tasa máxima de alcoholemia permitida? \n1. 0,5 g/L\n2. 0,3 g/L (Nóveles y profesionales)",
-        "drink": "¿Que quieres beber hoy? \n1.Cervecilla \n2.Vino \n3.Destilados \n4.Absenta"
-    },
-    "en": {
-        "gender": "¿What's your gender? \n1.Man\n2.Woman\n3.Tomboy\n4.Surprise girl",
-        "weight": "¿What's your weight?",
-        "tam": "¿Maximum alcohol tax allowed? \n1.0,5 g/L\n2.0,3 g/L (New driver and professionals)",
-        "drink": "¿What are you gonna drink? \n1.Beer \n2.Wine \n3.Spirits \n4.Absinthe"
-    },
-    "ca": {
-        "gender": "¿Quin es el teu génere? \n1.Home\n2.Dona\n3.Home afeminat\n4.Dona amb pirola",
-        "weight": "¿Cuanto pesas?",
-        "tam": "¿Tasa máxima de alcoholemia permessa? \n1.0,5 g/L\n2.0,3 g/L (Novel i professionals)",
-        "drink": "¿Que vols beure? \n1.Birreta \n2.Vinet \n3.Destilat \n4.Absenta"
-    },
-   }
+        "es": {
+            "title": "Calculadora de Alcohol Ingerido",  
+            "select_language": "Selecciona Idioma:",
+            "gender": "¿Cual es tu género? ",
+            "weight": "¿Cuanto pesas?",
+            "tam": "¿Tasa máxima de alcoholemia permitida?",
+            "drink": "¿Que quieres beber hoy?",
+            "result": "Tu ingesta de alcohol calculada es:",
+            "alcohol_pure": "ml de alcohol puro", 
+            "gender_options": ["Hombre", "Mujer", "Hombre afeminado", "Dama con Rama"],
+            "tam_options": ["0,5 g/L", "0,3 g/L (Nóveles y profesionales)"],
+            "drink_options": ["Cervecilla", "Vino", "Destilados", "Absenta"],
+        },
+        "en": {
+            "title": "Alcohol Intake Calculator",  
+            "select_language": "Select Language:",
+            "gender": "What's your gender? ",
+            "weight": "What's your weight?",
+            "tam": "Maximum alcohol tax allowed?",
+            "drink": "What are you gonna drink?",
+            "result": "Your calculated alcohol intake is:",
+            "alcohol_pure": "ml of pure alcohol",  
+            "gender_options": ["Man", "Woman", "Effeminate Man", "Lady with Branch"],
+            "tam_options": ["0.5 g/L", "0.3 g/L (Novice and Professionals)"],
+            "drink_options": ["Beer", "Wine", "Spirits", "Absinthe"],
+        },
+        "ca": {
+            "title": "Calculadora d'Alcohol Ingerit",  
+            "select_language": "Selecciona Idioma:",
+            "gender": "Quin es el teu gènere? ",
+            "weight": "Quin és el teu pes?",
+            "tam": "Tasa màxima d'alcoholemia permesa?",
+            "drink": "Què vols beure?",
+            "result": "La teva ingesta d'alcohol calculada és:",
+            "alcohol_pure": "ml d'alcohol pur", 
+            "gender_options": ["Home", "Dona", "Home afeminat", "Dama amb Rama"],
+            "tam_options": ["0,5 g/L", "0,3 g/L (Nové i professionals)"],
+            "drink_options": ["Cervesa", "Vi", "Destil·lats", "Absenta"],
+        },
+    }
     return translations.get(language, translations["es"])
 
 
@@ -50,9 +70,45 @@ def data(gender, weight, tam, drink):
     return k, tma, wh, grad
 
 def calc(k, tma, wh, hundred, density, grad):
-
     cai  = (tma*k*wh*hundred)/(density * grad)
     return cai
 
+def calcSelectedDrinks(cai, grad):
+    if grad == 4.5:
+        return calculate_beer(cai, grad)
+    elif grad == 11:
+        return calculate_wine(cai, grad)
+    elif grad == 35:
+        return calculate_spirits(cai, grad)
+    elif grad == 90:
+        return calculate_absinthe(cai, grad)
 
+def calculate_beer(cai, grad):
+    volumQuinto = 200
+    volumMediana = 500
+    volumCana = 210
 
+    numberOfQuintos = cai / volumQuinto
+    numberOfMediana = cai / volumMediana
+    numberOfCanas = cai / volumCana
+
+    return numberOfQuintos, numberOfMediana, numberOfCanas
+
+def calculate_wine(cai, grad):
+    wineCapacity = 150
+    numberOfWine = cai / wineCapacity
+    return numberOfWine
+
+def calculate_spirits(cai, grad):
+    shotCapacity = 30
+    cubataCapacity = 480
+
+    numberOfShots = cai /  shotCapacity
+    numberOfCubatas = cai / cubataCapacity
+
+    return numberOfShots, numberOfCubatas
+
+def calculate_absinthe(cai, grad):
+    absinthCapacity = 30
+    numberOfAbsinths = cai / absinthCapacity
+    return numberOfAbsinths

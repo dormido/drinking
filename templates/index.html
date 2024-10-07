@@ -1,58 +1,72 @@
 <!DOCTYPE html>
-< lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/styles.css">
-
-    <title>Calculadora de Alcohol</title>
+    <title>{{ translations['title'] }}</title> <!-- Títol que canvia segons l'idioma -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='js.js') }}"></script> <!-- Importa el fitxer js -->
 </head>
+<body>
+    <div class="content">
+        <h1>{{ translations['title'] }}</h1> <!-- Mostra el títol segons l'idioma -->
 
-  <div class="content">
-    <h1>Calculadora de Alcohol Ingerido</h1>
-    
-    <div class="language">
-    <form method="POST" action="/">
-        <label for="language">Selecciona el idioma:</label>
-        <select name="language" id="language">
-            <option value="es">Español</option>
-            <option value="en">Inglés</option>
-            <option value="ca">Català</option>
-        </select><br><br>
-    </form>
+        <form method="POST">
+            <label for="language">{{ translations['select_language'] }}</label>
+            <select name="language" id="language" onchange="changeLanguage()">
+                <option value="es" {% if selected_language == 'es' %}selected{% endif %}>Español</option>
+                <option value="en" {% if selected_language == 'en' %}selected{% endif %}>English</option>
+                <option value="ca" {% if selected_language == 'ca' %}selected{% endif %}>Català</option>
+            </select>
+
+            <p>{{ translations['gender'] }}</p>
+            <select name="gender" required>
+                {% for option in translations['gender_options'] %}
+                    <option value="{{ loop.index }}">{{ option }}</option>
+                {% endfor %}
+            </select>
+
+            <br> <!-- Espaciado entre preguntas -->
+            <p>{{ translations['weight'] }}</p>
+            <input type="number" name="weight" step="0.1" required><br>
+
+            <br> <!-- Espaciado entre preguntas -->
+            <p>{{ translations['tam'] }}</p> 
+            <select name="tam" required>
+                {% for option in translations['tam_options'] %}
+                    <option value="{{ loop.index }}">{{ option }}</option>
+                {% endfor %}
+            </select>
+
+            <br> <!-- Espaciado entre preguntas -->
+            <p>{{ translations['drink'] }}</p> 
+            <select name="drink" required>
+                {% for option in translations['drink_options'] %}
+                    <option value="{{ loop.index }}">{{ option }}</option>
+                {% endfor %}
+            </select>
+
+            <br> <!-- Espaciado antes del botón -->
+            <button type="submit">Submit</button>
+        </form>
+
+        {% if result %}
+        <p>{{ translations['result'] }}</p> <!-- Mostra "Tu ingesta de alcohol calculada es:" -->
+        <ul>
+            {% if drink == 1 %}
+                <li>Quintos: {{ result[0]|round(2) }}</li>
+                <li>Medianas: {{ result[1]|round(2) }}</li>
+                <li>Cañas: {{ result[2]|round(2) }}</li>
+            {% elif drink == 2 %}
+                <li>{{ translations['drink_options'][1] }}: {{ result|round(2) }}</li>
+            {% elif drink == 3 %}
+                <li>Shots: {{ result[0]|round(2) }}</li>
+                <li>Cubatas: {{ result[1]|round(2) }}</li>
+            {% elif drink == 4 %}
+                <li>{{ translations['drink_options'][3] }}: {{ result|round(2) }}</li>
+            {% endif %}
+        </ul>
+        {% endif %}
     </div>
-
-        <label for="gender">Género:</label>
-        <select name="gender" id="gender">
-            <option value="1">Hombre</option>
-            <option value="2">Mujer</option>
-            <option value="3">Hombre afeminado</option>
-            <option value="4">Dama con Rama</option>
-        </select><br><br>
-
-        <label for="weight">Peso (kg):</label>
-        <input type="number" name="weight" id="weight" step="0.1" required><br><br>
-
-        <label for="tam">Tasa máxima de alcoholemia permitida:</label>
-        <select name="tam" id="tam">
-            <option value="1">0,5 g/L</option>
-            <option value="2">0,3 g/L (Nóveles y profesionales)</option>
-        </select><br><br>
-
-        <label for="drink">¿Qué bebida?</label>
-        <select name="drink" id="drink">
-            <option value="1">Cerveza</option>
-            <option value="2">Vino</option>
-            <option value="3">Destilados</option>
-            <option value="4">Absenta</option>
-        </select><br><br>
-
-        <button type="submit">Calcular</button>
-    </form>
-
-    {% if result %}
-    <h2>Cantidad de alcohol ingerido: {{ result }} gramos</h2>
-    {% endif %}
- </div>
 </body>
 </html>

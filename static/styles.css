@@ -1,13 +1,79 @@
+:root {
+    --background-color: #f4f4f9;
+    --primary-color: #333;
+    --secondary-color: #666;
+    --accent-color: #007BFF;
+    --border-color: #e0e0e0;
+}
+
 body {
+    background-color: var(--background-color);
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: var(--primary-color);
+    margin: 0;
+    padding: 0;
     display: flex;
-    justify-content: center; /* Alinea horizontalmente */
-    align-items: center; /* Alinea verticalmente */
-    height: 100vh; /* Altura de la ventana del navegador */
-    margin: 0; /* Elimina el margen por defecto */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .content {
-    text-align: center; /* Centra el texto dentro del div */
-    border: 1px solid #000; /* Opcional: para ver los límites */
-    padding: 20px; /* Espaciado interno */
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+    border: 1px solid var(--border-color);
 }
+
+h1 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+p, label {
+    font-size: 1rem;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    display: block;
+}
+
+input[type="number"], select {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+
+button {
+    background-color: var(--accent-color);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: darken(var(--accent-color), 10%);
+}
+
+form p {
+    margin-bottom: 5px;
+}
+
+form select, form input {
+    margin-bottom: 15px;
+}
+
+
