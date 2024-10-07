@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ translations['title'] }}</title> <!-- Títol que canvia segons l'idioma -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>{{ translations['title'] }}</h1> <!-- Mostra el títol segons l'idioma -->
+
+    <form method="POST">
+        <label for="language">{{ translations['select_language'] }}</label>
+        <select name="language" id="language" onchange="changeLanguage()">
+            <option value="es" {% if selected_language == 'es' %}selected{% endif %}>Español</option>
+            <option value="en" {% if selected_language == 'en' %}selected{% endif %}>English</option>
+            <option value="ca" {% if selected_language == 'ca' %}selected{% endif %}>Català</option>
+        </select>
+
+    <form action="{{ url_for('select_drink') }}" method="get">
+        <button type="submit">Seleccionar la bebida/button>
+    </form>
+    <form action="{{ url_for('select_drink') }}" method="get">
+        <button type="submit">Ofreceme Opciones</button>
+    </form>
+</body>
+</html>

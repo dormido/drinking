@@ -34,5 +34,9 @@ def index():
     translations = get_translations(language)
     return render_template("index.html", translations=translations, selected_language=language)
 
+@app.route("/welcome")
+def select_drink():
+    return render_template("welcome.html")
+
 if __name__ == "__main__":
     app.run(debug=True)

@@ -85,7 +85,7 @@ def calcSelectedDrinks(cai, grad):
 
 def calculate_beer(cai, grad):
     volumQuinto = 200
-    volumMediana = 500
+    volumMediana = 330
     volumCana = 210
 
     numberOfQuintos = cai / volumQuinto
